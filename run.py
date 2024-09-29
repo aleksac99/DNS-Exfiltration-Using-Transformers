@@ -100,7 +100,7 @@ if __name__ == '__main__':
             **run_config['data']['train'].get('other_params', dict()))
     
     print(f'Train dataset length: {len(train_dataset)}')
-    print(f'Eval datasets length: {[len(d) for d in eval_datasets]}')
+    print(f'Eval datasets length: {[len(d) for d in eval_datasets.values()]}')
 
     # 4. Logging
     run_config['training']['device'] = device
