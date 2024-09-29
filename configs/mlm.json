@@ -38,7 +38,6 @@
                 "info": {
                     "paths": ["/kaggle/input/dns-exfiltration-sanu/data/val"],
                     "preprocess": [
-                        [{"name": "select_subset", "params": {"p": 0.1, "shuffle": true}}]
                     ]
                 }
             }
