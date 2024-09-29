@@ -1,0 +1,6 @@
+torch
+pandas
+numpy
+wandb
+tqdm
+python-dotenv
