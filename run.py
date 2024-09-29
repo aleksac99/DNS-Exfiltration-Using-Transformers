@@ -98,6 +98,9 @@ if __name__ == '__main__':
             preprocess_params=eval_params,
             ignore_index=-100,
             **run_config['data']['train'].get('other_params', dict()))
+    
+    print(f'Train dataset length: {len(train_dataset)}')
+    print(f'Eval datasets length: {[len(d) for d in eval_datasets]}')
 
     # 4. Logging
     run_config['training']['device'] = device
