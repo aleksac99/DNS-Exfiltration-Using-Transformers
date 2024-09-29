@@ -38,6 +38,7 @@
                 "info": {
                     "paths": ["/kaggle/input/dns-exfiltration-sanu/data/val"],
                     "preprocess": [
+                        [{"name": "select_subset", "params": {"p": 0.1, "shuffle": true}}]
                     ]
                 }
             }
@@ -45,10 +46,10 @@
     },
     "training": {
         "n_epochs": 100,
-        "evaluate_each": 10000,
+        "evaluate_each": 500,
         "evaluate_on_epoch_end": false,
         "metrics": ["perplexity"],
-        "batch_size": 16,
+        "batch_size": 512,
         "learning_rate": 1e-3,
         "scheduler": "linear",
         "save": {
