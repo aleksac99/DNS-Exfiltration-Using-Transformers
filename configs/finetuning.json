@@ -1,0 +1,67 @@
+{
+    "task": "finetuning",
+    "pretrained": true,
+    "model": {
+        "architecture": "bert",
+        "d_model": 312,
+        "n_layers": 4,
+        "d_feedforward": 1200,
+        "n_heads": 12,
+        "out_features": 2,
+        "path": "pretrained/mlm.pt",
+        "max_seq_len": 512
+    },
+    "tokenizer": {
+        "path": "pretrained/tokenizer.json",
+        "pretrained": true,
+        "chars": "()*-./0123456789:@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\_`abcdefghijklmnopqrstuvwxyz",
+        "max_seq_len": 512,
+        "special_tokens": {
+            "cls_token": "[CLS]",
+            "unk_token": "[UNK]",
+            "pad_token": "[PAD]",
+            "mask_token": "[MASK]",
+            "sep_token": "[SEP]"
+        }
+    },
+    "data": {
+        "train": {
+            "paths": ["data_sanu/train"],
+            "preprocess": [
+                [{"name": "select_subset", "params": {"p": 0.1}}]
+            ]
+        },
+        "eval": [
+            {
+                "name": "val",
+                "info": {
+                    "paths": ["data_sanu/val"],
+                    "preprocess": [[
+                        {"name": "select_subset", "params": {"p": 0.1}}]
+                    ]
+                }
+            }
+        ]
+    },
+    "training": {
+        "n_epochs": 500,
+        "evaluate_each": 2,
+        "evaluate_on_epoch_end": false,
+        "metrics": ["precision", "recall", "f1"],
+        "batch_size": 16,
+        "learning_rate": 1e-4,
+        "scheduler": "linear",
+        "save": {
+            "save_dir": "models",
+            "dataset": "val",
+            "metric": "f1"
+        }
+    },
+    "logger": {
+        "name": "WandB",
+        "params": {
+            "project": "dns-pytorch",
+            "save_code": true
+        }
+    }
+}

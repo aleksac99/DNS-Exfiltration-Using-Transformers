@@ -1,0 +1,67 @@
+{
+    "task": "mlm",
+    "pretrained": false,
+    "model": {
+        "architecture": "bert",
+        "d_model": 312,
+        "n_layers": 4,
+        "d_feedforward": 1200,
+        "n_heads": 12,
+        "max_seq_len": 512
+    },
+    "tokenizer": {
+        "save_path": "tokenizer.json",
+        "load_path": "",
+        "pretrained": false,
+        "chars": "()*-./0123456789:@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\_`abcdefghijklmnopqrstuvwxyz",
+        "max_seq_len": 256,
+        "special_tokens": {
+            "cls_token": "[CLS]",
+            "unk_token": "[UNK]",
+            "pad_token": "[PAD]",
+            "mask_token": "[MASK]",
+            "sep_token": "[SEP]"
+        }
+    },
+    "data": {
+        "train": {
+            "paths": ["/data/dns-exfiltration-dataset/data/train"],
+            "preprocess": [
+            ],
+            "other_params": {
+                "mask_prob": 0.15
+            }
+        },
+        "eval": [
+            {
+                "name": "eval",
+                "info": {
+                    "paths": ["/data/dns-exfiltration-dataset/data/val"],
+                    "preprocess": [
+                    ]
+                }
+            }
+        ]
+    },
+    "training": {
+        "n_epochs": 5,
+        "evaluate_each": 1000,
+        "evaluate_on_epoch_end": false,
+        "metrics": ["perplexity"],
+        "batch_size": 16,
+        "learning_rate": 1e-5,
+        "scheduler": "linear",
+        "save": {
+            "save_dir": "models",
+            "dataset": "eval",
+            "metric": "perplexity"
+        }
+    },
+    "logger": {
+        "name": "WandB",
+        "params": {
+            "project": "DNS Exfiltration SANU",
+            "save_code": true
+        }
+    }
+}
