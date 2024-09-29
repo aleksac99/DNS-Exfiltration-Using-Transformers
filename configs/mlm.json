@@ -25,7 +25,7 @@
     },
     "data": {
         "train": {
-            "paths": ["/data/dns-exfiltration-dataset/data/train"],
+            "paths": ["/kaggle/input/dns-exfiltration-sanu/data/train"],
             "preprocess": [
             ],
             "other_params": {
@@ -36,7 +36,7 @@
             {
                 "name": "eval",
                 "info": {
-                    "paths": ["/data/dns-exfiltration-dataset/data/val"],
+                    "paths": ["/kaggle/input/dns-exfiltration-sanu/data/val"],
                     "preprocess": [
                     ]
                 }
